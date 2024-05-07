@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctjnujysjalui"]
+
+[ext_resource type="LabelSettings" uid="uid://b06eijjus3cd5" path="res://Scenes/Systems/label_settings.tres" id="1_0uhr3"]
+[ext_resource type="Script" path="res://Scripts/Systems/canva_ui.gd" id="1_unciy"]
+[ext_resource type="Texture2D" uid="uid://vfp6ujvs40il" path="res://addons/Tiny Swords (Update 010)/UI/Banners/Banner_Horizontal.png" id="2_78aju"]
+[ext_resource type="Texture2D" uid="uid://cnhbrjb5r2v3x" path="res://addons/Tiny Swords (Update 010)/Resources/Resources/M_Idle.png" id="4_a23od"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ovq04"]
+texture = ExtResource("2_78aju")
+texture_margin_left = 32.0
+texture_margin_top = 16.0
+texture_margin_right = 32.0
+texture_margin_bottom = 48.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(32, 48, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a72f8"]
+atlas = ExtResource("4_a23od")
+region = Rect2(40, 56, 56, 48)
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_unciy")
+
+[node name="TimeLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.0
+offset_top = 38.0
+offset_right = 32.0
+offset_bottom = 72.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "08:00"
+label_settings = ExtResource("1_0uhr3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -335.0
+offset_top = -318.0
+offset_right = -105.0
+offset_bottom = -228.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ovq04")
+
+[node name="MeatLabel" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.0
+offset_top = -35.0
+offset_right = 66.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("1_0uhr3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel2"]
+layout_mode = 0
+offset_left = 43.0
+offset_right = 171.0
+offset_bottom = 128.0
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_a72f8")

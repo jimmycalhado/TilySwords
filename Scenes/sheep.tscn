@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cssk8f8gngnad"]
+[gd_scene load_steps=15 format=3 uid="uid://cssk8f8gngnad"]
 
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_tf1ai"]
 [ext_resource type="PackedScene" uid="uid://c30pxyk420hgt" path="res://Scenes/skull.tscn" id="2_anvjd"]
+[ext_resource type="PackedScene" uid="uid://wly3ksylcerc" path="res://Scenes/damage_digit.tscn" id="3_7w4nn"]
 [ext_resource type="Texture2D" uid="uid://cfm28m1mdx2dw" path="res://addons/Tiny Swords (Update 010)/Resources/Sheep/HappySheep_Bouncing.png" id="3_g2dtl"]
 [ext_resource type="Script" path="res://Scripts/Enemies/follow_player.gd" id="4_sygvi"]
+[ext_resource type="PackedScene" uid="uid://bdpgfmrqfvhkt" path="res://Scenes/meat.tscn" id="4_tpxty"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3j7y7"]
 atlas = ExtResource("3_g2dtl")
@@ -63,6 +65,8 @@ height = 48.0
 script = ExtResource("1_tf1ai")
 health = 2
 death_prefab = ExtResource("2_anvjd")
+damage_digital_prefab = ExtResource("3_7w4nn")
+drop_items = Array[PackedScene]([ExtResource("4_tpxty")])
 
 [node name="Inimigo" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -20)
@@ -78,3 +82,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.176471)
 [node name="follow_player" type="Node" parent="."]
 script = ExtResource("4_sygvi")
 speed = 1.8
+
+[node name="DamageDigitMarker" type="Marker2D" parent="."]
+position = Vector2(0, -41)

@@ -17,6 +17,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sword_area: Area2D = $SwordArea
 @onready var hitbox_area: Area2D = $HitBox
+@onready var health_progress: ProgressBar = $HealthProgressBar 
 
 var input_vector: Vector2 = Vector2(0, 0)
 var is_running: bool = false
@@ -25,6 +26,14 @@ var is_attacking: bool = false
 var attack_cooldown: float = 0.0
 var hitbox_cooldown: float = 0.0
 var ritual_cooldown:float = 0.0
+
+signal meat_collector(value:int)
+
+func _ready():
+	GameManage.player = self
+	meat_collector.connect(func(value: int): 
+		GameManage.meat_counter += 1
+		)
 
 func _process(delta: float) -> void:
 	GameManage.player_position = position
@@ -44,6 +53,9 @@ func _process(delta: float) -> void:
 
 	update_hitbox_damage(delta)
 	update_ritual(delta)
+	
+	health_progress.max_value = max_health
+	health_progress.value = health
 	
 @warning_ignore("unused_parameter")
 
@@ -166,6 +178,7 @@ func damage(amount: int) -> void:
 		die()
 
 func die() -> void:
+	GameManage.end_game()
 	if death_prefab:
 		var death_object = death_prefab.instantiate()
 		death_object.position = position

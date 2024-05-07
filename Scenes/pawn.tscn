@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dq8r4vi3uqa7o"]
+[gd_scene load_steps=16 format=3 uid="uid://dq8r4vi3uqa7o"]
 
 [ext_resource type="Texture2D" uid="uid://ba52ru0rsj8b3" path="res://addons/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="1_xte3b"]
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_y64tc"]
 [ext_resource type="PackedScene" uid="uid://c30pxyk420hgt" path="res://Scenes/skull.tscn" id="2_exf4s"]
 [ext_resource type="Script" path="res://Scripts/Enemies/follow_player.gd" id="3_01dey"]
+[ext_resource type="PackedScene" uid="uid://wly3ksylcerc" path="res://Scenes/damage_digit.tscn" id="3_im2r3"]
+[ext_resource type="PackedScene" uid="uid://bdpgfmrqfvhkt" path="res://Scenes/meat.tscn" id="4_lcn60"]
+[ext_resource type="PackedScene" uid="uid://tolpcgas2ort" path="res://Scenes/gold_meat.tscn" id="5_ff3qg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k4oxi"]
 atlas = ExtResource("1_xte3b")
@@ -56,13 +59,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5upgc"]
-radius = 18.0
-height = 48.0
+height = 36.0
 
 [node name="Pawn" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_y64tc")
 health = 6
 death_prefab = ExtResource("2_exf4s")
+damage_digital_prefab = ExtResource("3_im2r3")
+drop_items = Array[PackedScene]([ExtResource("4_lcn60"), ExtResource("5_ff3qg")])
+drop_chances = Array[float]([0.9, 0.1])
 
 [node name="Inimigo" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -26)
@@ -72,10 +77,14 @@ frame = 3
 frame_progress = 0.0650995
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -29)
+position = Vector2(0, -4)
+rotation = 1.58304
 shape = SubResource("CapsuleShape2D_5upgc")
 debug_color = Color(0, 0.6, 0.701961, 0.176471)
 
 [node name="follow_player" type="Node" parent="."]
 script = ExtResource("3_01dey")
 speed = 0.9
+
+[node name="DamageDigitMarker" type="Marker2D" parent="."]
+position = Vector2(0, -53)

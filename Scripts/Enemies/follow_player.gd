@@ -12,6 +12,8 @@ func _ready():
 	
 
 func _physics_process(delta: float) -> void:
+	if GameManage.is_game_over: return
+	
 	var player_position = GameManage.player_position
 	var difference = player_position - enemy.position
 	var input_vector = difference.normalized()

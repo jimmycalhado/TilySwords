@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://tolpcgas2ort"]
+
+[ext_resource type="PackedScene" uid="uid://bdpgfmrqfvhkt" path="res://Scenes/meat.tscn" id="1_2h3n2"]
+
+[node name="GoldMeat" instance=ExtResource("1_2h3n2")]
+self_modulate = Color(2, 2, 0, 1)
+regeneration_amount = 30
